@@ -16,15 +16,30 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Starting...");
 
-  Serial.println("--------- 1: Init WiFi --------------------------------------------");
+  Serial.println("--------- 1: Initialize WiFi --------------------------------------");
   initWifi();
   Serial.println("--------- 1: Finished - WiFi initialized --------------------------");
   
-  Serial.println("--------- 2: Init Stepper Motor -----------------------------------");
+  Serial.println("--------- 2: Initialize Stepper Motor -----------------------------");
   initStepper();
   Serial.println("--------- 2: Finished - Stepper Motor initialized -----------------");
 
-  Serial.println("--------- 3: Init FileSystem --------------------------------------");
+  Serial.println("--------- 3: Initialize FileSystem --------------------------------");
+  initializeFileSystem();
+  Serial.println("--------- 3: Finished - FileSystem initialized --------------------");
+
+  // Initialize HTTP Server
+  Serial.println("--------- 4: Initialize HTTP Server -------------------------------");
+  server.on("/", serveRequest);
+  server.begin();
+  Serial.println("--------- 4: Finished - HTTP Server initialized -------------------");
+}
+
+void loop() {
+  server.handleClient();
+}
+
+void initializeFileSystem(){
   if(SPIFFS.begin())
   {
     Serial.println("SPIFFS Initialize....ok");
@@ -38,19 +53,7 @@ void setup() {
   {
     Serial.println("SPIFFS Initialization...failed");
   }  
-  Serial.println("--------- 3: Finished - FileSystem initialized --------------------");
-
-  // Initialize HTTP Server
-  Serial.println("--------- 4: Init HTTP Server -------------------------------------");
-  server.on("/", serveRequest);
-  server.begin();
-  Serial.println("--------- 4: Finished - HTTP Server initialized -------------------");
 }
-
-void loop() {
-  server.handleClient();
-}
-
 
 
 void setCurrentAngleFromFile(){
