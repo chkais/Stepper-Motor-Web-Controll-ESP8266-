@@ -7,6 +7,13 @@ This project allows a ULN2003 Stepper Motor to be controlled via web request.
  3. Adapt the WiFi settings in the WiFi Tab
  4. Configure the maximum angle the motor should rotate. This can be any digit greater zero (>0 :wink:). It depends on your motor setup.
  5. Change the parameter name in the ServeRequest-Tab to one you like. For me it was 'volume' because I control the volume wheel of an amplifier
+ 6. Change the PIN-configuration in 'StepperMotorControl'-Tab depending on your hardware setup. Since I am working with a NodeMCU board I choosed the following setup: 
+ ```c++
+#define IN1 14 // GPIO 14 / D5
+#define IN2 12 // GPIO 12 / D6
+#define IN3 13 // GPIO 13 / D7
+#define IN4 15 // GPIO 15 / D8
+ ```
 
 ## How to use
 Just open a new tab in your favorite browser and enter the following url:
