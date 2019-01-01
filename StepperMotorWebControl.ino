@@ -14,8 +14,6 @@ ESP8266WebServer server(80);
 void setup() {
   //ESP8266 
   Serial.begin(115200);
-  Serial.println("Starting...");
-
   Serial.println("--------- 1: Initialize WiFi --------------------------------------");
   initWifi();
   Serial.println("--------- 1: Finished - WiFi initialized --------------------------");
@@ -33,6 +31,9 @@ void setup() {
   server.on("/", serveRequest);
   server.begin();
   Serial.println("--------- 4: Finished - HTTP Server initialized -------------------");
+  Serial.println("");
+  Serial.println("Waiting for requests....");
+
 }
 
 void loop() {
@@ -42,7 +43,6 @@ void loop() {
 void initializeFileSystem(){
   if(SPIFFS.begin())
   {
-    Serial.println("SPIFFS Initialize....ok");
     if (SPIFFS.exists(CURRENT_ANGLE_PATH)){
       setCurrentAngleFromFile();
     } else {

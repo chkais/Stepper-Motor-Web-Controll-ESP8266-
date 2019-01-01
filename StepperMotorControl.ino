@@ -28,16 +28,15 @@ int NEXT_STEP_POSITION = 0;
 
 void rotate(double angle){
   int total_steps = calculateSteps(angle);  
-  Serial.print("Total Steps: ");
-  Serial.println(total_steps);
   while (total_steps > 0){
     total_steps--;
     performStep(stepsMatrix[NEXT_STEP_POSITION]);
     setNextStepperPositionValueDependingOn(angle);
     delay(1);
   }
-    
+  initStepper();
 }
+
 void setNextStepperPositionValueDependingOn(double angle){
   if (angle < 0){
     NEXT_STEP_POSITION = (NEXT_STEP_POSITION + 8 - 1) % 8;

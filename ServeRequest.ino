@@ -18,7 +18,7 @@ void serveRequest(){
     message += server.arg(targetPercent);
     message += " Rotated motor by ";
     message += rotationAngle;
-    message += " degrees."
+    message += " degrees.";
   }
   server.send(200, "text/plain", message);
 }
