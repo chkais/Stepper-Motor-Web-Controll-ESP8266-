@@ -1,2 +1,23 @@
-# Stepper-Motor-Web-Controll-ESP8266-
-# Stepper-Motor-Web-Controll-ESP8266-
+# Stepper-Motor-Web-Controll-ESP8266
+This project allows a ULN2003 Stepper Motor to be controlled via web request.
+
+## Setup / Before you start
+ 1. Download the Arduino IDE
+ 2. Import all files as an arduino sketchbook
+ 3. Adapt the WiFi settings in the WiFi Tab
+ 4. Configure the maximum angle the motor should rotate. This can be any digit greater zero (>0 :wink:). It depends on your motor setup.
+ 5. Change the parameter name in the ServeRequest-Tab to one you like. For me it was 'volume' because I control the volume wheel of an amplifier
+
+## How to use
+Just open a new tab in your favorite browser and enter the following url:
+http://\<IP-of-your-esp9266\>/?volume=80
+
+This will set the rotation angle to 80% of the configured maximum angle.
+
+## Additional Comments
+  I used [HA-Bridge](https://github.com/bwssytems/ha-bridge) to control my volume via Amazon Alexa. For this I had to make the IP for the ESP8266 static (I did it on the router, but do as you prefer). For more information on how to configure this, just go to the linked github project. The documentation is very comprehensive.
+
+## Possible improvements
+  * You could setup a reset button and some mechanism to determine the maximum rotation angle
+  * Response as JSON
+  * ...
