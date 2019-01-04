@@ -1,8 +1,8 @@
 // ESP-12F(WeMos D1 mini)
-#define IN1 14 //GPIO 14
-#define IN2 12 //GPIO 12
-#define IN3 13 //GPIO 13
-#define IN4 15 //GPIO 15
+#define IN1 14 //GPIO 14 / D5
+#define IN2 12 //GPIO 12 / D6
+#define IN3 13 //GPIO 13 / D7
+#define IN4 15 //GPIO 15 / D8
 
 
 void initStepper() {
@@ -36,7 +36,6 @@ void rotate(double angle){
   }
   initStepper();
 }
-
 void setNextStepperPositionValueDependingOn(double angle){
   if (angle < 0){
     NEXT_STEP_POSITION = (NEXT_STEP_POSITION + 8 - 1) % 8;
