@@ -26,13 +26,19 @@ This will set the rotation angle to 80% of the configured maximum angle.
 ### MQTT
 <TBD>
 
+
+
+## Additional Comments
+Some comments on how to integrate this into your home-automation
+### HA-Bridge
+I used [HA-Bridge](https://github.com/bwssytems/ha-bridge) to control my volume via Amazon Alexa. For this I had to make the IP for the ESP8266 static (I did it on the router, but do as you prefer). For more information on how to configure this, just go to the linked github project. The documentation is very comprehensive.
+  
 ### MQTT Home-Assistant
 Check copy the content of the 'ha-config.yml'-file to your home assistant configuration (configuration.yml). Then you will have an entity to use this control via your ha userinterface
 
-## Additional Comments
-  I used [HA-Bridge](https://github.com/bwssytems/ha-bridge) to control my volume via Amazon Alexa. For this I had to make the IP for the ESP8266 static (I did it on the router, but do as you prefer). For more information on how to configure this, just go to the linked github project. The documentation is very comprehensive.
-
 ## Possible improvements
   * You could setup a reset button and some mechanism to determine the maximum rotation angle
-  * Response as JSON
+  * Response as JSON (HTTP and MQTT)
+  * Web-Usage via POST
+  * GET will get the current status
   * ...
