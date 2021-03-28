@@ -2,14 +2,16 @@
 #include <FS.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
-
-
+#include <PubSubClient.h>
 
 String CURRENT_ANGLE_PATH = "/CURRENT_ANGLE.txt";
-int CURRENT_ANGLE = 0;
-int MAX_ANGLE = 360;
+double CURRENT_ANGLE = 0;
+double MAX_ANGLE = 270;
 
 ESP8266WebServer server(80);
+
+WiFiClient espClient;
+PubSubClient client(espClient);
 
 void setup() {
   //ESP8266 
@@ -24,6 +26,7 @@ void setup() {
 
   Serial.println("--------- 3: Initialize FileSystem --------------------------------");
   initializeFileSystem();
+  setupMQTT();
   Serial.println("--------- 3: Finished - FileSystem initialized --------------------");
 
   // Initialize HTTP Server
@@ -38,6 +41,7 @@ void setup() {
 
 void loop() {
   server.handleClient();
+  mqttLoop();
 }
 
 void initializeFileSystem(){
@@ -75,4 +79,3 @@ void writeCurrentAngleToFile(){
   f.println(CURRENT_ANGLE);
   f.close();
 }
-

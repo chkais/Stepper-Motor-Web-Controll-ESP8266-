@@ -1,5 +1,5 @@
-const char* ssid = "<YourSSIDHere>";
-const char* password = "<YourPasswordHere>";
+const char* ssid = SECRET_WIFI;
+const char* password = SECRET_WIFI_PASSWORD;
 void initWifi()
 {
 

@@ -1,0 +1,12 @@
+light:
+  - platform: mqtt
+    name: "Volume Control Anlage"
+    unique_id: "esp9266_volume_control_anlage_1"
+    state_topic: "esp_custom/volume_control_anlage/status"
+    command_topic: "esp_custom/volume_control_anlage/switch"
+    brightness_state_topic: "esp_custom/volume_control_anlage/brightness/status"
+    brightness_command_topic: "esp_custom/volume_control_anlage/brightness/set"
+    state_value_template: "{{ value }}"
+    brightness_value_template: "{{ value }}"
+    payload_on: "ON"
+    payload_off: "OFF"

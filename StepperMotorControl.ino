@@ -26,13 +26,23 @@ int stepsMatrix[8][4] = {
 const int STEPS_PER_REVOLUTION = 4095;
 int NEXT_STEP_POSITION = 0;
 
+double rotateToPercent(double targetPercent){
+  double rotationAngle = (targetPercent * MAX_ANGLE) - CURRENT_ANGLE;
+
+  CURRENT_ANGLE = CURRENT_ANGLE + rotationAngle;
+
+  rotate(-rotationAngle);
+  writeCurrentAngleToFile();
+  return rotationAngle;
+}
+
 void rotate(double angle){
   int total_steps = calculateSteps(angle);  
   while (total_steps > 0){
     total_steps--;
     performStep(stepsMatrix[NEXT_STEP_POSITION]);
     setNextStepperPositionValueDependingOn(angle);
-    delay(1);
+    delay(1); // 3 if cpu is 80MHz
   }
   initStepper();
 }
